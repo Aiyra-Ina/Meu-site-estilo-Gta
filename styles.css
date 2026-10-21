@@ -1,22 +1,75 @@
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: "Bangers",system-ui;
-
+    font-family: "Bangers", system-ui;
 }
+
 html {
     height: 100%;
 }
 
 body {
-    background-image: url(img/background2.jpg);
+    /* Cor de fundo escura caso a imagem demore a carregar */
+    background-color: #12071f; 
+    overflow-x: hidden;
+}
+
+/* =========================================
+   CAMADAS DE FUNDO (Efeito Fade)
+   ========================================= */
+.fundo {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-size: cover;
     background-position: center;
-} 
+    opacity: 0;
+    transition: opacity 0.6s ease; /* FAZ O EFEITO DE FADE */
+    z-index: -1;
+}
 
+.fundo-a {
+    background-image: url('./img/bg-lucia.jpg'); /* Fundo inicial */
+    opacity: 1; /* Começa visível */
+}
 
+/* =========================================
+   BOTÕES DE TROCA DE FUNDO
+   ========================================= */
+.fundo-menu {
+    position: fixed;
+    top: 28px;
+    right: 28px;
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
 
+.fundo-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+}
 
+.fundo-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.fundo-btn.ativo {
+    border-color: #ffd319;
+    box-shadow: 0 0 16px #ffd319;
+    opacity: 1;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL (Nome e Personagem)
+   ========================================= */
 .nome {
     color: #ff3cac;
     font-size: 360px;
@@ -24,52 +77,74 @@ body {
     bottom: 500px;
     text-align: center;
     width: 100%;
+    pointer-events: none; /* Impede que o texto atrapalhe os cliques */
 }
 
 .personagem {
     position: absolute;
     bottom: 0;
-    left: 0%;
-    right: 0%;
+    left: 0; right: 0;
     margin: auto;
     height: 700px;
-    
 }
+
 .textos {
     position: absolute;
     bottom: 40px;
     left: 40px;
-
-
+    z-index: 10;
 }
 
 .etiqueta {
     font-size: 26px;
     color: #ffd319;
-
 }
 
-h1{
+h1 {
     font-size: 72px;
     color: #ffffff;
 }
 
 .texto-apoio {
-    font-size:15px;
+    font-size: 15px;
     color: #ffffff;
     width: 400px;
     margin-top: 20px;
 }
 
+/* =========================================
+   CAIXA DE DESCRIÇÃO
+   ========================================= */
+.caixa-descricao {
+    margin-top: 22px;
+    width: 400px;
+    max-width: 90vw;
+    padding: 14px 18px;
+    background: rgba(10, 5, 20, 0.6);
+    border-left: 5px solid #ffd319;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+}
+
+.descricao {
+    color: #ffffff;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   MENU DE AVATARES
+   ========================================= */
 .menu {
     position: absolute;
     bottom: 40px;
-
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     gap: 20px;
+    z-index: 10;
 }
 
 .avatar {
@@ -79,10 +154,42 @@ h1{
     object-fit: cover;
     object-position: top;
     border: 2px solid #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+.avatar.ativo {
+    border-color: #ffd319;
+    box-shadow: 0 0 18px #ffd319;
 }
 
 .voce {
     background-color: #ffd319;
     padding: 20px;
     border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.voce:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   RESPONSIVIDADE (Para telas menores)
+   ========================================= */
+@media (max-width: 900px) {
+    .nome { font-size: 170px; bottom: 430px; }
+    .personagem { height: 480px; }
+    .textos { left: 20px; bottom: 130px; }
+    h1 { font-size: 44px; }
+    .texto-apoio { width: 90vw; }
+    .caixa-descricao { width: 90vw; }
+    .fundo-menu { top: 16px; right: 16px; }
 }

@@ -1,52 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Meu Site Estilo GTA</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
-
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 
 <body>
 
-    <p class="nome">Lucia</p>
+    <!-- 1. CAMADAS DE FUNDO (Para o efeito de Fade) -->
+    <div class="fundo fundo-a"></div>
+    <div class="fundo fundo-b"></div>
 
-    <img class="personagem" src="img/lucia.png">
+    <!-- 2. MENU DE BOTÕES DE FUNDO (Criados automaticamente pelo JS) -->
+    <div class="fundo-menu"></div>
+
+    <!-- 3. CONTEÚDO PRINCIPAL -->
+    <p class="nome">Lucia</p>
+    <img class="personagem" src="./img/lucia.png" alt="Personagem">
 
     <div class="textos">
-
         <p class="etiqueta">Selecione o Seu Personagem</p>
         <h1>Não é só <br>um Jogo</h1>
         <p class="texto-apoio">Escolha uma lenda de Dev.City. Ou tire uma selfie e vire uma.</p>
 
+        <!-- Caixa de Descrição -->
+        <div class="caixa-descricao">
+            <p class="descricao">
+                Lucia será a nova protagonista ao lado de Jason, seu namorado. Sabe-se que ela será a primeira protagonista feminina da franquia GTA, que tem habilidade de luta — pois seu pai a treina desde a infância —, que nasceu em Liberty City e que está presa na Penitenciária Leonida.
+            </p>
+        </div>
     </div>
 
+    <!-- 4. MENU DE AVATARES -->
     <div class="menu">
+        <!-- Lucia (com fundo bg-lucia.jpg) -->
+        <img onclick="escolherPersonagem('Lucia', './img/lucia.png', '#ff3cac', 'Lucia será a nova protagonista ao lado de Jason, seu namorado. Sabe-se que ela será a primeira protagonista feminina da franquia GTA, que tem habilidade de luta — pois seu pai a treina desde a infância —, que nasceu em Liberty City e que está presa na Penitenciária Leonida.', './img/bg-lucia.jpg', this)" 
+             class="avatar ativo" src="./img/lucia.png" alt="Lucia">
 
-            <img onclick="escolherPersonagem('Lucia', 'img/lucia.png' ,'#ff3cac')" class="avatar" src="img/lucia.png">
+        <!-- Jason (com fundo bg-jason.jpg) -->
+        <img onclick="escolherPersonagem('Jason', './img/jason.png', '#00b2c9', 'Jason é um ex-militar que agora trabalha para traficantes locais de Leonida. Ele acaba se envolvendo com Lucia, e ambos acabam envolvidos em uma conspiração que se estende por toda Leonida.', './img/bg-jason.jpg', this)" 
+             class="avatar" src="./img/jason.png" alt="Jason">
 
-            <img onclick="escolherPersonagem('Jason', 'img/jason.png' , '#00b2c9')" class="avatar" src="img/jason.png">
+        <!-- CJ (com fundo bg-cj.jpg) -->
+        <img onclick="escolherPersonagem('CJ', './img/cj.png', '#7ed37e', 'CJ, personagem icônico da franquia, aparece aqui com um visual mais atualizado; acredito que não preciso descrevê-lo, pois a maioria já o conhece.', './img/bg-cj.jpg', this)" 
+             class="avatar" src="./img/cj.png" alt="CJ"> 
 
-            <img onclick="escolherPersonagem('CJ', 'img/cj.png' , '#7ed37e')" class="avatar" src="img/cj.png"> 
-
-        <label class="voce">📷
-
-            <input type ="file" accept="image/*" hidden onchange="lerfoto(this)">
-
-        </label>
-
+        <!-- Botão da Câmera -->
+        <button class="voce" onclick="document.getElementById('input-foto').click()">📷</button>
     </div>
 
+    <!-- Input escondido para a foto (Puter AI) -->
+    <input type="file" id="input-foto" accept="image/*" hidden onchange="lerfoto(this)">
+
+    <!-- SCRIPTS -->
     <script src="https://js.puter.com/v2/"></script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
